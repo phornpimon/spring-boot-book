@@ -27,6 +27,10 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import static com.pornpimon.stockbackend.security.SecurityConstants.CLAIMS_ROLE;
+import static com.pornpimon.stockbackend.security.SecurityConstants.SECRET_KEY_;
+import static com.pornpimon.stockbackend.security.SecurityConstants.EXPIRATION_TIME;
+
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
@@ -67,7 +71,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 List<String> roles = new ArrayList<>();
                 user.getAuthorities().stream().forEach(
                         authority -> roles.add(authority.getAuthority()));
-                claims.put("role", roles);
+                claims.put(CLAIMS_ROLE, roles);
 
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
@@ -87,8 +91,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private String createToken(Claims claims) {
         return Jwts.builder().setClaims(claims)
-                .setExpiration(new Date(System.currentTimeMillis()))
-                .signWith(SignatureAlgorithm.HS256, "JoyToken").compact();
+                .setExpiration(new Date(System.currentTimeMillis()+ EXPIRATION_TIME))
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY_).compact();
     }
 
 }

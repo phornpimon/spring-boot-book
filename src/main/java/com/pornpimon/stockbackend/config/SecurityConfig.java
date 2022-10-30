@@ -43,6 +43,13 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> auth
                 .antMatchers("/auth/register").permitAll()
+                .antMatchers(HttpMethod.GET, "/book/*/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/book/sort/*/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/book/search/*/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/book/category/*/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/book/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/book").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/book/*").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/book/*").hasAnyAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .exceptionHandling()

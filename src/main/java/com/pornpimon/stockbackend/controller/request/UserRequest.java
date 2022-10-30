@@ -1,5 +1,7 @@
 package com.pornpimon.stockbackend.controller.request;
 
+import java.util.Date;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -27,11 +29,13 @@ public class UserRequest {
 
     private String name;
 
-    private int age;
+    private Date birthDate;
 
     private String address;
 
     private String telephone;
+
+    private String email;
 
     private MultipartFile image;
 }

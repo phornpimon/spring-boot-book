@@ -10,8 +10,8 @@ public class CustomAbstractHttpConfigurer extends AbstractHttpConfigurer<CustomA
     public void configure(HttpSecurity httpSecurity) throws Exception {
         AuthenticationManager authenticationManager = httpSecurity.getSharedObject(AuthenticationManager.class);
         httpSecurity
-            .addFilter(new JWTAuthenticationFilter(authenticationManager));
-            // .addFilter(new JWTAuthorizationFilter(authenticationManager));
+            .addFilter(new JWTAuthenticationFilter(authenticationManager))
+            .addFilter(new JWTAuthorizationFilter(authenticationManager));
     }
     
 }

@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -43,13 +44,17 @@ public class User {
     private String name;
 
     @Column(nullable = false)
-    private int age;
+    @DateTimeFormat(pattern = "dd/mm/yyyy")
+    private Date birthDate;
 
     @Column(nullable = false)
     private String address;
 
     @Column(nullable = false)
     private String telephone;
+
+    @Column(nullable = false)
+    private String email;
 
     private String image;
 

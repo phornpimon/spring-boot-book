@@ -36,9 +36,10 @@ public class UserServiceImpl implements UserService {
                     .setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()))
                     .setRole(userRequest.getRole())
                     .setName(userRequest.getName())
-                    .setAge(userRequest.getAge())
+                    .setBirthDate(userRequest.getBirthDate())
                     .setAddress(userRequest.getAddress())
                     .setTelephone(userRequest.getTelephone())
+                    .setEmail(userRequest.getEmail())
                     .setImage(fileName);
             return userRepository.save(user);
         }

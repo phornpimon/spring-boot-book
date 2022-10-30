@@ -32,16 +32,16 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/sort/{field}/offset={offset}/pageSize={pageSize}")
-    public BookResponse<Page<Book>> getBooksSort(@PathVariable String field, @PathVariable int offset, @PathVariable int pageSize) {
-        Page<Book> allBook = bookService.getAllBookSort(field, offset, pageSize);
-        return new BookResponse<Page<Book>>(allBook.getSize(), allBook);
-    }
-
     @GetMapping("/offset={offset}/pageSize={pageSize}")
     public BookResponse<Page<Book>> getBooksPagination(@PathVariable int offset, @PathVariable int pageSize) {
         Page<Book> allbookpagination = bookService.getAllBookPagination(offset, pageSize);
         return new BookResponse<Page<Book>>(allbookpagination.getSize(), allbookpagination);
+    }
+
+    @GetMapping("/sort/{field}/offset={offset}/pageSize={pageSize}")
+    public BookResponse<Page<Book>> getBooksSort(@PathVariable String field, @PathVariable int offset, @PathVariable int pageSize) {
+        Page<Book> allBook = bookService.getAllBookSort(field, offset, pageSize);
+        return new BookResponse<Page<Book>>(allBook.getSize(), allBook);
     }
 
     @GetMapping("/search/offset={offset}/pageSize={pageSize}")
