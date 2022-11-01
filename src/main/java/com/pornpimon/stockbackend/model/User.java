@@ -1,5 +1,6 @@
 package com.pornpimon.stockbackend.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -44,8 +46,8 @@ public class User {
     private String name;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "dd/mm/yyyy")
-    private Date birthDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate birthDate;
 
     @Column(nullable = false)
     private String address;

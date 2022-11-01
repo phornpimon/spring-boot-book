@@ -1,5 +1,6 @@
 package com.pornpimon.stockbackend.service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,12 +32,13 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(userRequest.getUsername());
         if (user == null) {
             String fileName = storegeService.store(userRequest.getImage());
+            LocalDate birthDate = LocalDate.of(userRequest.getBirthYear(), userRequest.getBirthMonth(), userRequest.getBirthDay());
             user = new User()
                     .setUsername(userRequest.getUsername())
                     .setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()))
                     .setRole(userRequest.getRole())
                     .setName(userRequest.getName())
-                    .setBirthDate(userRequest.getBirthDate())
+                    .setBirthDate(birthDate)
                     .setAddress(userRequest.getAddress())
                     .setTelephone(userRequest.getTelephone())
                     .setEmail(userRequest.getEmail())
