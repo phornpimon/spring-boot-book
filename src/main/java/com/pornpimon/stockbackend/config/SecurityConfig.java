@@ -40,9 +40,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
          httpSecurity
+                .cors().and()
                 .csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> auth
                 .antMatchers("/auth/register").permitAll()
+                .antMatchers("/auth/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/book/*/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/book/sort/*/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/book/search/*/*").permitAll()

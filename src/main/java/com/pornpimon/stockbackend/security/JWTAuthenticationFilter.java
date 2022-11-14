@@ -78,6 +78,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
                 Map<String, Object> responseJSON = new HashMap<>();
                 responseJSON.put("token", createToken(claims));
+                responseJSON.put("username", username);
 
                 OutputStream out = response.getOutputStream();
                 ObjectMapper mapper = new ObjectMapper();

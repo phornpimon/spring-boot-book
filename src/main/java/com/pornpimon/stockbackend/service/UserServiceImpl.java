@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.pornpimon.stockbackend.Repository.UserRepository;
 import com.pornpimon.stockbackend.controller.request.UserRequest;
+import com.pornpimon.stockbackend.exception.BookNotFoundException;
 import com.pornpimon.stockbackend.exception.UserDuplicateException;
 import com.pornpimon.stockbackend.model.User;
 
@@ -55,6 +56,15 @@ public class UserServiceImpl implements UserService {
             return user.get();
         }
         return null;
+    }
+
+    @Override
+    public User getProfileById(Long id) {
+        Optional<User> user =  userRepository.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        throw new BookNotFoundException(id);
     }
 
 }
