@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .antMatchers("/auth/register").permitAll()
                 .antMatchers("/auth/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/book/*/*").permitAll()
-                .antMatchers(HttpMethod.GET, "/book/sort/*/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/book/sort/*/*/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/book/search/*/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/book/category/*/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/book/*").permitAll()
